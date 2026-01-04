@@ -43,7 +43,7 @@ const selectedColorMap: Record<string, string> = {
 };
 
 const Profile = () => {
-  const { user, signOut } = useAuth();
+  const { user, signOut, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [interests, setInterests] = useState<Interest[]>([]);
@@ -55,12 +55,15 @@ const Profile = () => {
   const { uploadImage, uploading: uploadingAvatar } = useImageUpload();
 
   useEffect(() => {
+    // Wait for auth to initialize
+    if (authLoading) return;
+
     if (!user) {
       navigate("/auth");
       return;
     }
     fetchData();
-  }, [user, navigate]);
+  }, [user, navigate, authLoading]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -187,7 +190,7 @@ const Profile = () => {
     return IconComponent ? <IconComponent className="w-5 h-5" /> : null;
   };
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-muted-foreground">جاري التحميل...</div>
