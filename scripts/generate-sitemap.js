@@ -31,6 +31,10 @@ async function generateSitemap() {
         '/auth',
         '/onboarding',
         '/profile',
+        '/about-us',
+        '/contact',
+        '/privacy-policy',
+        '/terms-of-service',
     ];
 
     try {

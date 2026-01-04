@@ -2,85 +2,109 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app</loc>
-    <lastmod>2026-01-04T18:56:35.657Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.945Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/auth</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/onboarding</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/profile</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://elegant-tanuki-35cc2e.netlify.app/about-us</loc>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://elegant-tanuki-35cc2e.netlify.app/contact</loc>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://elegant-tanuki-35cc2e.netlify.app/privacy-policy</loc>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://elegant-tanuki-35cc2e.netlify.app/terms-of-service</loc>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/3440e8fc-fb0d-4901-99b5-2b4cc346f063</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/833d3f7d-3f1f-4c52-ac5a-17928ff60332</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/c7fd26fb-f9e7-43b9-a828-16ab11dcb40d</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/3cd4d7a6-3614-4637-89dc-d83a3f8d977e</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/624a8b11-ab2c-4abb-b1e3-b25f8d0cd78a</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/d507e13e-f077-4a85-9394-e6afe4ab00d6</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/e9ac3766-9905-4219-b4c7-3fc4e28b8472</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/ea3e7c65-a7e9-4139-bbdf-b69627569d24</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/a2ce3c23-c067-45aa-8d85-8c62bd2a931f</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elegant-tanuki-35cc2e.netlify.app/interest/10024b58-08db-4ab8-ad80-a1eb272300f7</loc>
-    <lastmod>2026-01-04T18:56:35.659Z</lastmod>
+    <lastmod>2026-01-04T19:48:02.948Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
