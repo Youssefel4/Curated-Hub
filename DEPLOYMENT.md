@@ -84,6 +84,8 @@ VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_y94BY29QOX6S3esLX354OA_w-Hxvrnd
 6. Add environment variables
 7. Deploy!
 
+**Important for Netlify:** Ensure you have the `public/_redirects` file created (I've added it for you) to prevent 404 errors on refresh.
+
 ### Option 3: GitHub Pages
 
 ```bash
