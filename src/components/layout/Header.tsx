@@ -38,6 +38,11 @@ const Header = ({ onCreatePost }: HeaderProps) => {
                 placeholder="ابحث عن منشورات أو اهتمامات..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && searchQuery.trim()) {
+                    navigate(`/?q=${encodeURIComponent(searchQuery.trim())}`);
+                  }
+                }}
                 className="w-full h-10 pr-10 pl-4 rounded-xl bg-secondary/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
               />
             </div>
@@ -103,6 +108,12 @@ const Header = ({ onCreatePost }: HeaderProps) => {
                 placeholder="ابحث..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && searchQuery.trim()) {
+                    navigate(`/?q=${encodeURIComponent(searchQuery.trim())}`);
+                    setIsMenuOpen(false);
+                  }
+                }}
                 className="w-full h-10 pr-10 pl-4 rounded-xl bg-secondary/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>

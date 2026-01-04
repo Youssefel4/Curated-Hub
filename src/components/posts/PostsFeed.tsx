@@ -23,11 +23,12 @@ interface PostsFeedProps {
   loadingMore?: boolean;
   hasMore?: boolean;
   onLoadMore?: () => void;
+  searchQuery?: string | null;
 }
 
 type SortOption = "recent" | "popular";
 
-const PostsFeed = ({ posts, selectedInterest, onSelectInterest, onLike, interests, loading, loadingMore, hasMore, onLoadMore }: PostsFeedProps) => {
+const PostsFeed = ({ posts, selectedInterest, onSelectInterest, onLike, interests, loading, loadingMore, hasMore, onLoadMore, searchQuery }: PostsFeedProps) => {
   const [sortBy, setSortBy] = useState<SortOption>("recent");
 
   const filteredPosts = selectedInterest
@@ -43,6 +44,29 @@ const PostsFeed = ({ posts, selectedInterest, onSelectInterest, onLike, interest
 
   return (
     <div className="flex-1 min-w-0">
+      {/* Search Header */}
+      {searchQuery && (
+        <div className="mb-6 flex items-center justify-between glass-card rounded-2xl p-4 bg-accent/5 border-accent/20">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+              <Filter className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-sm font-medium text-foreground">نتائج البحث عن:</p>
+              <h1 className="text-lg font-bold text-accent">"{searchQuery}"</h1>
+            </div>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => window.location.href = '/'}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            إلغاء البحث
+          </Button>
+        </div>
+      )}
+
       {/* Mobile Interests */}
       <div className="lg:hidden mb-6 -mx-4 px-4 overflow-x-auto scrollbar-hide">
         <div className="flex gap-2 pb-2">
@@ -115,13 +139,26 @@ const PostsFeed = ({ posts, selectedInterest, onSelectInterest, onLike, interest
           ))
         ) : (
           <div className="glass-card rounded-2xl p-12 text-center animate-fade-in">
-            <div className="text-6xl mb-4">📭</div>
+            <div className="text-6xl mb-4">
+              {searchQuery ? "🔍" : "📭"}
+            </div>
             <h3 className="text-xl font-bold text-foreground mb-2">
-              لا توجد منشورات
+              {searchQuery ? "لا توجد نتائج" : "لا توجد منشورات"}
             </h3>
             <p className="text-muted-foreground">
-              كن أول من ينشر في هذا الاهتمام!
+              {searchQuery
+                ? `لم نجد أي نتائج تطابق "${searchQuery}"`
+                : "كن أول من ينشر في هذا الاهتمام!"}
             </p>
+            {searchQuery && (
+              <Button
+                variant="outline"
+                className="mt-4"
+                onClick={() => window.location.href = '/'}
+              >
+                العودة للرئيسية
+              </Button>
+            )}
           </div>
         )}
       </div>

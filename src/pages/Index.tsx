@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import InterestsSidebar from "@/components/interests/InterestsSidebar";
 import PostsFeed from "@/components/posts/PostsFeed";
@@ -24,6 +24,9 @@ const POSTS_PER_PAGE = 10;
 const Index = () => {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q");
+
   const [posts, setPosts] = useState<Post[]>([]);
   const [interests, setInterests] = useState<Interest[]>([]);
   const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
@@ -38,10 +41,10 @@ const Index = () => {
     fetchInterests();
   }, []);
 
-  // Fetch posts when user or page changes
+  // Fetch posts when user, search query, or interest changes
   useEffect(() => {
     fetchPosts(0, true);
-  }, [user]);
+  }, [user, searchQuery, selectedInterest]);
 
   const fetchInterests = async () => {
     try {
@@ -68,12 +71,24 @@ const Index = () => {
       const from = pageNum * POSTS_PER_PAGE;
       const to = from + POSTS_PER_PAGE - 1;
 
-      // Single optimized query with all related data
-      const { data: postsData, error } = await supabase
+      // Start building the query
+      let query = supabase
         .from("posts")
         .select("*")
         .order("created_at", { ascending: false })
         .range(from, to);
+
+      // Apply search filter if exists
+      if (searchQuery) {
+        query = query.ilike('content', `%${searchQuery}%`);
+      }
+
+      // Apply interest filter if exists
+      if (selectedInterest) {
+        query = query.eq('interest_id', selectedInterest);
+      }
+
+      const { data: postsData, error } = await query;
 
       if (error) throw error;
 
@@ -315,6 +330,7 @@ const Index = () => {
             loadingMore={loadingMore}
             hasMore={hasMore}
             onLoadMore={handleLoadMore}
+            searchQuery={searchQuery}
           />
           <TrendingWidget interests={interests} />
         </div>
