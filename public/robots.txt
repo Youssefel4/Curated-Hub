@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://elegant-tanuki-35cc2e.netlify.app/sitemap.xml
