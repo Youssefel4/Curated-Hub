@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { Post } from "@/types";
+import Landing from "./Landing";
 
 interface Interest {
   id: string;
@@ -23,6 +24,12 @@ const POSTS_PER_PAGE = 10;
 
 const Index = () => {
   const { user, loading: authLoading } = useAuth();
+
+  // Conditionally render Landing Page if no user
+  if (!authLoading && !user) {
+    return <Landing />;
+  }
+
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("q");
