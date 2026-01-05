@@ -35,73 +35,73 @@ const TrendingWidget = ({ interests }: TrendingWidgetProps) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchTrendingData = async () => {
+      setLoading(true);
+      try {
+        // Fetch post counts per interest
+        const { data: posts } = await supabase
+          .from("posts")
+          .select("interest_id");
+
+        // Count posts per interest
+        const interestCounts = new Map<string, number>();
+        (posts || []).forEach(post => {
+          const count = interestCounts.get(post.interest_id) || 0;
+          interestCounts.set(post.interest_id, count + 1);
+        });
+
+        // Combine with interest data and sort
+        const trending = interests
+          .map(interest => ({
+            ...interest,
+            postsCount: interestCounts.get(interest.id) || 0,
+          }))
+          .filter(i => i.postsCount > 0)
+          .sort((a, b) => b.postsCount - a.postsCount)
+          .slice(0, 4);
+
+        setTrendingInterests(trending);
+
+        // Fetch active users (users who posted in last 7 days)
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+        const { data: recentPosts } = await supabase
+          .from("posts")
+          .select("user_id")
+          .gte("created_at", sevenDaysAgo.toISOString());
+
+        // Get unique user IDs
+        const uniqueUserIds = [...new Set((recentPosts || []).map(p => p.user_id))];
+
+        // Fetch user profiles
+        const { data: users } = await supabase
+          .from("profiles")
+          .select("user_id, username, avatar_url")
+          .in("user_id", uniqueUserIds.slice(0, 5));
+
+        setActiveUsers(
+          (users || []).map(u => ({
+            id: u.user_id,
+            username: u.username,
+            avatar_url: u.avatar_url,
+          }))
+        );
+
+        // Get total active users count
+        setTotalUsers(Math.max(0, uniqueUserIds.length - 5));
+      } catch (error) {
+        console.error("Error fetching trending data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchTrendingData();
   }, [interests]);
 
-  const fetchTrendingData = async () => {
-    setLoading(true);
-    try {
-      // Fetch post counts per interest
-      const { data: posts } = await supabase
-        .from("posts")
-        .select("interest_id");
-
-      // Count posts per interest
-      const interestCounts = new Map<string, number>();
-      (posts || []).forEach(post => {
-        const count = interestCounts.get(post.interest_id) || 0;
-        interestCounts.set(post.interest_id, count + 1);
-      });
-
-      // Combine with interest data and sort
-      const trending = interests
-        .map(interest => ({
-          ...interest,
-          postsCount: interestCounts.get(interest.id) || 0,
-        }))
-        .filter(i => i.postsCount > 0)
-        .sort((a, b) => b.postsCount - a.postsCount)
-        .slice(0, 4);
-
-      setTrendingInterests(trending);
-
-      // Fetch active users (users who posted in last 7 days)
-      const sevenDaysAgo = new Date();
-      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
-      const { data: recentPosts } = await supabase
-        .from("posts")
-        .select("user_id")
-        .gte("created_at", sevenDaysAgo.toISOString());
-
-      // Get unique user IDs
-      const uniqueUserIds = [...new Set((recentPosts || []).map(p => p.user_id))];
-
-      // Fetch user profiles
-      const { data: users } = await supabase
-        .from("profiles")
-        .select("user_id, username, avatar_url")
-        .in("user_id", uniqueUserIds.slice(0, 5));
-
-      setActiveUsers(
-        (users || []).map(u => ({
-          id: u.user_id,
-          username: u.username,
-          avatar_url: u.avatar_url,
-        }))
-      );
-
-      // Get total active users count
-      setTotalUsers(Math.max(0, uniqueUserIds.length - 5));
-    } catch (error) {
-      console.error("Error fetching trending data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const getIconComponent = (iconName: string) => {
-    const IconComponent = (Icons as any)[iconName];
+    const IconComponent = (Icons as Record<string, any>)[iconName];
     return IconComponent ? <IconComponent className="w-4 h-4" /> : null;
   };
 

@@ -196,7 +196,7 @@ const InterestPage = () => {
   };
 
   const getIconComponent = (iconName: string) => {
-    const IconComponent = (Icons as any)[iconName];
+    const IconComponent = (Icons as Record<string, any>)[iconName];
     return IconComponent ? <IconComponent className="w-8 h-8" /> : null;
   };
 

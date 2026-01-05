@@ -41,7 +41,7 @@ const sizeMap = {
 
 const InterestBadge = ({ interest, isSelected, onClick, size = "md" }: InterestBadgeProps) => {
   const getIconComponent = (iconName: string) => {
-    const IconComponent = (Icons as any)[iconName];
+    const IconComponent = (Icons as Record<string, any>)[iconName];
     return IconComponent ? <IconComponent className="w-4 h-4" /> : null;
   };
 

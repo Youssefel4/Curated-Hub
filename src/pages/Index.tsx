@@ -25,10 +25,7 @@ const POSTS_PER_PAGE = 10;
 const Index = () => {
   const { user, loading: authLoading } = useAuth();
 
-  // Conditionally render Landing Page if no user
-  if (!authLoading && !user) {
-    return <Landing />;
-  }
+
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -44,13 +41,15 @@ const Index = () => {
   const [page, setPage] = useState(0);
 
   // Fetch interests on mount
+  // Fetch interests on mount
   useEffect(() => {
-    fetchInterests();
-  }, []);
+    if (user) fetchInterests();
+  }, [user]);
 
   // Fetch posts when user, search query, or interest changes
+  // Fetch posts when user, search query, or interest changes
   useEffect(() => {
-    fetchPosts(0, true);
+    if (user) fetchPosts(0, true);
   }, [user, searchQuery, selectedInterest]);
 
   const fetchInterests = async () => {
@@ -314,6 +313,11 @@ const Index = () => {
     }
     setIsCreateModalOpen(true);
   };
+
+  // Conditionally render Landing Page if no user
+  if (!authLoading && !user) {
+    return <Landing />;
+  }
 
   return (
     <div className="min-h-screen bg-background">
