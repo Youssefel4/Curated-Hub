@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Heart, MessageCircle, Share2, MoreHorizontal, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Post } from "@/types";
@@ -72,19 +73,20 @@ const PostCard = ({ post, onLike, style }: PostCardProps) => {
       className="glass-card rounded-2xl p-5 card-hover animate-slide-up"
       style={style}
     >
+
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
+        <Link to={`/profile/${post.author.id}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <img
             src={post.author.avatar}
             alt={post.author.username}
             className="w-12 h-12 rounded-full border-2 border-border"
           />
           <div>
-            <h3 className="font-bold text-foreground">{post.author.username}</h3>
+            <h3 className="font-bold text-foreground hover:underline">{post.author.username}</h3>
             <p className="text-sm text-muted-foreground">{timeAgo}</p>
           </div>
-        </div>
+        </Link>
         <div className="flex items-center gap-2">
           <InterestBadge interest={post.interest} size="sm" />
           <Button variant="ghost" size="icon" className="h-8 w-8">
